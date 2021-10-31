@@ -3,7 +3,7 @@ package com.ficticius.ficticiusclean.service;
 import com.ficticius.ficticiusclean.dto.FrotaDTO;
 import com.ficticius.ficticiusclean.dto.FrotaRanqueadaDTO;
 import com.ficticius.ficticiusclean.entities.Frota;
-import com.ficticius.ficticiusclean.exception.NotFoundException;
+import com.ficticius.ficticiusclean.exception.FrotaNaoEncontradaException;
 import com.ficticius.ficticiusclean.repositories.FrotaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,8 +20,10 @@ public class FrotaServiceImpl implements FrotaService{
     private final FrotaRepository frotaRepository;
 
     @Override
-    public Frota create(Frota frota){
-        return frotaRepository.save(frota);
+    public FrotaDTO create(FrotaDTO dto){
+        Frota frota = convertToDto(dto);
+        frotaRepository.save(frota);
+        return dto;
     }
 
     @Override
@@ -50,10 +52,11 @@ public class FrotaServiceImpl implements FrotaService{
         Frota frota = findById(id);
         frota.setNome(dto.getNome());
         frota.setMarca(dto.getMarca());
-        frota.setModelo(frota.getModelo());
+        frota.setModelo(dto.getModelo());
         frota.setConsumoMedioCombustivelCidade(dto.getConsumoMedioCombustivelCidade());
         frota.setConsumoMedioCombustivelRodovia(dto.getConsumoMedioCombustivelRodovia());
         frota.setDataFabricacao(dto.getDataFabricacao());
+        frotaRepository.save(frota);
         return dto;
     }
 
@@ -70,14 +73,13 @@ public class FrotaServiceImpl implements FrotaService{
             return frota.get();
         }
 
-        throw new NotFoundException("Frota não encontrada");
+        throw new FrotaNaoEncontradaException("Frota não encontrada");
     }
 
     @Override
     public Frota convertToDto(FrotaDTO dto){
         return Frota
                 .builder()
-                .id(dto.getId())
                 .dataFabricacao(dto.getDataFabricacao())
                 .consumoMedioCombustivelCidade(dto.getConsumoMedioCombustivelCidade())
                 .consumoMedioCombustivelRodovia(dto.getConsumoMedioCombustivelRodovia())

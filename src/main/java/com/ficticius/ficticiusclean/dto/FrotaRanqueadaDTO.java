@@ -3,7 +3,7 @@ package com.ficticius.ficticiusclean.dto;
 import com.ficticius.ficticiusclean.entities.Frota;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.GetMapping;
+
 
 @Getter
 @Setter

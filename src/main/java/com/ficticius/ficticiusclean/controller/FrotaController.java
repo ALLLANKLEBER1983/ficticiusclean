@@ -32,12 +32,12 @@ public class FrotaController {
     }
 
     @PostMapping
-    public ResponseEntity<Frota> create(@RequestBody Frota frota){
+    public ResponseEntity<FrotaDTO> create(@RequestBody FrotaDTO frota){
         return ResponseEntity.ok(frotaService.create(frota));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<FrotaDTO> update(FrotaDTO dto,@PathVariable Long id){
+    public ResponseEntity<FrotaDTO> update(@RequestBody FrotaDTO dto,@PathVariable Long id){
         return ResponseEntity.ok(frotaService.update(dto,id));
     }
 
