@@ -9,6 +9,7 @@ import java.util.List;
 public interface FrotaService {
 
     FrotaDTO create(FrotaDTO dto);
+    List<Frota> getAllFrota();
     FrotaDTO update(FrotaDTO dto,Long id);
     void deleteById(Long id);
     Frota findById(Long id);

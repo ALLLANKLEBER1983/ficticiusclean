@@ -21,7 +21,12 @@ public class FrotaController {
 
     private final FrotaService frotaService;
 
-    @GetMapping("/{valorGasolina}/{valorCidade}/{valorRodovia}")
+    @GetMapping
+    public ResponseEntity<List<Frota>> getAllFrota(){
+        return ResponseEntity.ok(frotaService.getAllFrota());
+    }
+
+    @GetMapping("/ranqueada/{valorGasolina}/{valorCidade}/{valorRodovia}")
     @ApiOperation(value = "Retorna uma busca ranqueada por valor total de gasto com combustível")
     public ResponseEntity<List<FrotaRanqueadaDTO>> BuscaRanqueada (@PathVariable Double valorCidade,
                                                                    @PathVariable Double valorRodovia,

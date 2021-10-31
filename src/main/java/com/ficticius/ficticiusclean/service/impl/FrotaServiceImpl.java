@@ -1,10 +1,11 @@
-package com.ficticius.ficticiusclean.service;
+package com.ficticius.ficticiusclean.service.impl;
 
 import com.ficticius.ficticiusclean.dto.FrotaDTO;
 import com.ficticius.ficticiusclean.dto.FrotaRanqueadaDTO;
 import com.ficticius.ficticiusclean.entities.Frota;
 import com.ficticius.ficticiusclean.exception.FrotaNaoEncontradaException;
 import com.ficticius.ficticiusclean.repositories.FrotaRepository;
+import com.ficticius.ficticiusclean.service.FrotaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +15,14 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class FrotaServiceImpl implements FrotaService{
+public class FrotaServiceImpl implements FrotaService {
 
 
     private final FrotaRepository frotaRepository;
+
+    public List<Frota> getAllFrota(){
+        return frotaRepository.findAll();
+    }
 
     @Override
     public FrotaDTO create(FrotaDTO dto){

@@ -3,6 +3,7 @@ package com.ficticius.ficticiusclean.service;
 import com.ficticius.ficticiusclean.dto.FrotaRanqueadaDTO;
 import com.ficticius.ficticiusclean.entities.Frota;
 import com.ficticius.ficticiusclean.repositories.FrotaRepository;
+import com.ficticius.ficticiusclean.service.impl.FrotaServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
