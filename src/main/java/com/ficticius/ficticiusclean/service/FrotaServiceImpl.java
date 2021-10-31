@@ -6,7 +6,6 @@ import com.ficticius.ficticiusclean.entities.Frota;
 import com.ficticius.ficticiusclean.exception.NotFoundException;
 import com.ficticius.ficticiusclean.repositories.FrotaRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,13 +16,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class FrotaServiceImpl implements FrotaService{
 
-    @Autowired
-    private FrotaRepository frotaRepository;
+
+    private final FrotaRepository frotaRepository;
 
     @Override
     public Frota create(Frota frota){
-       return frotaRepository.save(frota);
-
+        return frotaRepository.save(frota);
     }
 
     @Override

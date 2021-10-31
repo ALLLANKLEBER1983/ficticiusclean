@@ -4,12 +4,10 @@ import com.ficticius.ficticiusclean.dto.FrotaDTO;
 import com.ficticius.ficticiusclean.dto.FrotaRanqueadaDTO;
 import com.ficticius.ficticiusclean.entities.Frota;
 import com.ficticius.ficticiusclean.service.FrotaService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,11 +15,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/frotas")
 @RequiredArgsConstructor
+@Api(value = "API REST Frota")
+@CrossOrigin(origins = "*")
 public class FrotaController {
 
     private final FrotaService frotaService;
 
     @GetMapping("/{valorGasolina}/{valorCidade}/{valorRodovia}")
+    @ApiOperation(value = "Retorna uma busca ranqueada por valor total de gasto com combustível")
     public ResponseEntity<List<FrotaRanqueadaDTO>> BuscaRanqueada (@PathVariable Double valorCidade,
                                                                    @PathVariable Double valorRodovia,
                                                                    @PathVariable Double valorGasolina){
