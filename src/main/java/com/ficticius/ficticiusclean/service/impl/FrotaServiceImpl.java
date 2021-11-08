@@ -9,6 +9,7 @@ import com.ficticius.ficticiusclean.service.FrotaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,6 +26,7 @@ public class FrotaServiceImpl implements FrotaService {
     }
 
     @Override
+    @Transactional
     public FrotaDTO create(FrotaDTO dto){
         Frota frota = convertToDto(dto);
         frotaRepository.save(frota);
@@ -53,6 +55,7 @@ public class FrotaServiceImpl implements FrotaService {
 
 
     @Override
+    @Transactional
     public FrotaDTO update(FrotaDTO dto,Long id){
         Frota frota = findById(id);
         frota.setNome(dto.getNome());
@@ -66,6 +69,7 @@ public class FrotaServiceImpl implements FrotaService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id){
         frotaRepository.deleteById(id);
     }
